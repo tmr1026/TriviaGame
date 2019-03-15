@@ -15,26 +15,37 @@ var qa = [
     question: "What award, often cited as the most prestigious award in electronic media, is administered By Grady College?", 
     choices: ["The GLAAD Media Awards", "The Pulitzer Prizes", "Peabody Awards", "Tony Awards"],
     rightAnswer: "Peabody Awards",
+    image: "assets/images/peabody.jpg",
 },
 {
     question: "Which is not one the three pillars of the arch?", 
     choices: ["Courage", "Wisdom","Justice","Moderation"],
     rightAnswer: "Courage",
+    image: "assets/images/arch.jpg",
 },
 {
     question: "Chartered by the Georgia General Assembly, UGA became America's first state-chartered university on what date?", 
     choices: ["September 17, 1787","January 27, 1785","January 25, 1785", "February 13, 1786"],
     rightAnswer: "January 27, 1785",
+    image: "assets/images/charter.jpg",
 },
 {
-    question: "Which of the following local Athens restauarnts inspired the name for the rock band R.E.M's album Automatic for the People?" , 
+    question: "Which of the following local Athens restaurants inspired the name for the rock band R.E.M's album Automatic for the People?" , 
     choices: ["Kelly's Jamaican Foods", "Peaches","Mayflower Restaraunt","Weaver D's"],
     rightAnswer: "Weaver D's",
+    image: "assets/images/automatic.jpg",
 },
 {
     question: "Of the UGA alumni below: Which is not one of the first African American four-year graduates?", 
     choices: ["Dr. Harold A. Black", "Dr. Mary B. Diallo", "Mary Frances Early", "Ms. Kerry Miller"],
     rightAnswer: "Mary Frances Early",
+    image: "assets/images/mary.jpg",
+},
+{
+    question: "Finish the line: Aint Nothin finer in the land", 
+    choices: ["Go Dawgs Sic Em!", "Than a Georgia bulldawgs football fan!", "Who's that coming down the track?", "Than a drunk obnoxious Georgia fan!"],
+    rightAnswer: "Than a drunk obnoxious Georgia fan!",
+    image: img ="assets/images/uga.jpg",
 }];
  var game = {
      questions: qa,
@@ -45,15 +56,16 @@ var qa = [
      unanswered: 0,
      countdown: function(){
          game.clock --;
-         $(".timeremaining").html(game.clock);
-         if (game.clock =0){
+         $(".timeRemaining").html(game.clock);
+         if (game.clock <=0){
              console.log("Time's up!");
              game.timesUp();
          }
      },
+
      loadQuestion: function(){
-         timer = setInterval(game.clock,1000);
-         $(".timeremaining").html(game.clock);
+         timer = setInterval(game.countdown,1000);
+         $(".timeRemaining").html(game.clock);
          $(".Questions").html("<h2>" +qa[game.questionIndex].question+ "</h2>");
          for (var i =0; i<qa[game.questionIndex].choices.length; i++){
              $(".Questions").append('<button class = "answer-button" id = "button-' + i +' "data-name= " '+ qa[game.questionIndex].choices[i]+' ">'+qa[game.questionIndex].choices[i]+'</button>');
@@ -62,7 +74,7 @@ var qa = [
      },
      nextQuestion: function(){
          game.clock = 15;
-         $(".timer").html(game.clock);
+         $(".timeRemaining").html(game.clock);
          game.questionIndex++;
          game.loadQuestion();
      },
@@ -87,7 +99,7 @@ var qa = [
      },
      clicked: function(e){
          clearInterval(timer);
-         if($(e.target).data("name")==qa[game.questionIndex].rightAnswer){
+         if($(e.target).data("name")== qa[game.questionIndex].rightAnswer){
              game.answeredRight();
          }else{
              game.answeredWrong();
@@ -107,7 +119,7 @@ var qa = [
         clearInterval(timer);
         game.incorrect++;
         $(".Questions").html("<h2> Nope thats not it!</h2>");
-        $(".Questions").append("<h3>The correct answer was:" + qa[game.questionIndex].rightAnswer+ "</h2>");
+        $(".Questions").append("<h3>The correct answer was: " + qa[game.questionIndex].rightAnswer+ "</h2>");
         if(game.questionIndex==qa.length -1){
             setTimeout(game.results, 3*1000);
         }else{
@@ -116,10 +128,10 @@ var qa = [
      },
      reset: function(){
          game.questionIndex=0;
-         game.clock=0;
-         game.correct=0;
-         game.incorrect=0;
-         game.unanswered=0;
+         game.clock= 0;
+         game.correct= 0;
+         game.incorrect= 0;
+         game.unanswered= 0;
          game.loadQuestion();
      }
 

@@ -1,0 +1,32 @@
+body{
+    font: Georgia;
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.Header{
+    color: white;
+}
+
+.Timer{
+    background-color: rgb(0, 0, 0);
+    color: white;
+    display: inline-block;
+    width: 30%;
+    margin: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.Questions{
+    background-color: rgb(186, 12, 47);
+    color: white;
+    display: inline-block;
+    width: 30%;
+    margin: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
